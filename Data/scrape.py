@@ -55,17 +55,19 @@ generation_config = {
 }
 
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-pro",
+    model_name="gemini-1.5-flash",
     generation_config=generation_config,
-    system_instruction="""Your goal is to generate a high-quality fake dataset about non-profits.
-You have to generate fake names, cities (choose a city from MA; use Boston more often), fake website url (using the name) and fake mission statements 
-(consisting of 3-4 well-written sentences with keywords about the non-profit's mission. For example, if the non-profit is a pet shelter, include keywords such as "dog", "cat" and "pet").
-Vary the names, locations, and missions for each response. Generate the data as a JSON object. Generate 10 responses per prompt""", 
+    system_instruction="""Your goal is to generate a high-quality fake dataset about non-profits.\n You have to generate fake names, cities (choose a city from MA; use Boston more often), fake website url (using the name) and fake mission statements (consisting of 2-3 well-written sentences with keywords about the non-profit \n For example, if the non-profit is a pet shelter, include keywords such as "dog", "cat" and "pet"). \n Vary the names, locations, and missions for each response. Generate 10 responses per prompt""", 
 )
+
+# chat_session = model.start_chat(history=[])
+# response = chat_session.send_message("Please generate the fake dataset of non-profits.")
+
+# print(response.text)
 
 for i in range(100):
     chat_session = model.start_chat(history=[])
-    response = chat_session.send_message("Please generate the fake dataset of non-profits.")
+    response = chat_session.send_message("Generate")
 
     json_response = json.loads(response.text)
 
