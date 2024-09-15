@@ -66,7 +66,7 @@ const GroupScreen = () => {
     <div className="group-screen">
       <button className="back-button" onClick={() => navigate(-1)}>Back</button>
       <div className="group-code">Group Code: {group.joinCode}</div>
-      <div className ="group-details">
+      <div className="group-details">
         <h1>{group.name}</h1>
         <p>{group.description}</p>
         <h2 className="members">Members</h2>
@@ -97,11 +97,15 @@ const GroupScreen = () => {
                   <button className="up-arrow">↑</button> {/* Up arrow button */}
                   <div className="name-location">
                     <h3>{charity.name}</h3>
-                    <p><strong>Location:</strong> {charity.city}, {charity.state}</p>
+                    <p><strong>📍 Location:</strong> {charity.city}, {charity.state}</p>
                   </div>
                   <div className="website-mission">
-                    <p><strong>Website:</strong> <a href={charity.website} target="_blank" rel="noopener noreferrer">{charity.website}</a></p>
-                    <p><strong>Mission:</strong> {charity.mission}</p>
+                    <p><strong>🔗 Website:</strong> <a href={
+                      charity.website.startsWith("http")
+                        ? charity.website
+                        : `https://${charity.website}`
+                    } target="_blank" rel="noopener noreferrer">{charity.website}</a></p>
+                    <p><strong>🤝 Mission:</strong> {charity.mission}</p>
                   </div>
                 </div>
               </li>
@@ -113,7 +117,7 @@ const GroupScreen = () => {
       </div>
 
     </div>
-  );  
+  );
 };
 
 export default GroupScreen;
