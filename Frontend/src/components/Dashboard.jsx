@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SignedIn, SignedOut, RedirectToSignIn, UserButton, useUser } from "@clerk/clerk-react";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { Link } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import createGroup from './createGroup';
 import joinGroup from './joinGroup';
@@ -92,10 +93,10 @@ const Dashboard = () => {
           ) : (
             <div className="groups-list">
               {groups.map(group => (
-                <div key={group.id} className="dashboard-card">
+                <Link key={group.id} to={`/group/${group.id}`} className="dashboard-card">
                   <h2>{group.name}</h2>
                   <p>{group.description}</p>
-                </div>
+                </Link>
               ))}
             </div>
           )}
