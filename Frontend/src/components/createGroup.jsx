@@ -2,23 +2,15 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 import generateJoinCode from './generateJoinCode';
 
-const createGroup = async (name, description, userId) => {
+const createGroup = async (name, description, userName) => {
   try {
     const joinCode = await generateJoinCode();
     const docRef = await addDoc(collection(db, "groups"), {
       name: name,
       description: description,
       joinCode: joinCode,
-      createdBy: userId,
-      createdAt: serverTimestamp(),
-      members: [userId],
-      events: [],
-      charityGoal: {
-        amount: 0,
-        currency: "USD",
-        deadline: null
-      },
-      totalDonations: 0
+      createdBy: userName,
+      members: [userName]
     });
     console.log("Group created with ID: ", docRef.id);
     return { id: docRef.id, joinCode: joinCode };

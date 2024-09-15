@@ -1,7 +1,7 @@
 import { collection, query, where, getDocs, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from '../firebaseConfig';
 
-const joinGroup = async (joinCode, userId) => {
+const joinGroup = async (joinCode, userName) => {
   try {
     const q = query(collection(db, "groups"), where("joinCode", "==", joinCode));
     const querySnapshot = await getDocs(q);
@@ -14,12 +14,12 @@ const joinGroup = async (joinCode, userId) => {
     const groupRef = groupDoc.ref;
 
     // Check if user is already a member
-    if (groupDoc.data().members.includes(userId)) {
+    if (groupDoc.data().members.includes(userName)) {
       throw new Error("You are already a member of this group");
     }
 
     await updateDoc(groupRef, {
-      members: arrayUnion(userId)
+      members: arrayUnion(userName)
     });
 
     console.log("Successfully joined group");
