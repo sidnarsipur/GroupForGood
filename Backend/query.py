@@ -80,7 +80,7 @@ def getTransactions(user_names, user_docs):
 
 #Find most frequent transactions with K-means clustering
 def getMostFrequentTransaction(embeddings):
-    kmeans = KMeans(n_clusters=3)
+    kmeans = KMeans(n_clusters=2)
     clusters = kmeans.fit_predict(embeddings)
 
     unique, counts = np.unique(clusters, return_counts=True)

@@ -176,6 +176,25 @@ li:nth-child(even) {
   opacity: 0.8;
 }
 
+.up-arrow {
+  background-color: transparent; /* Use a brighter blue */
+  color: blue; /* Ensures the icon/text stands out */
+  font-size: 3rem; /* Slightly larger for better visibility */
+  cursor: pointer;
+  padding: 0; /* Adds some inner spacing for a more clickable area */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centers the content in flexbox */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover and click effect */
+}
+
+.up-arrow:hover {
+  background-color: white; /* Darken the blue on hover */
+  border-color: white;
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+
 .find-charity-button {
   margin-top: 5%;
   padding: 10px 20px;

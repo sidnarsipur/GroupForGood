@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SignedIn, SignedOut, RedirectToSignIn, UserButton, useUser } from "@clerk/clerk-react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, getDoc, doc } from "firebase/firestore";
 import { Link } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import createGroup from './createGroup';
@@ -60,7 +60,7 @@ const Dashboard = () => {
       const groupId = await joinGroup(joinCode, user.fullName);
       alert("Successfully joined group!");
       // Fetch the group details and add to the groups list
-      const groupDoc = await getDocs(doc(db, 'groups', groupId));
+      const groupDoc = await getDoc(doc(db, 'groups', groupId));
       const groupData = { id: groupId, ...groupDoc.data() };
       setGroups([...groups, groupData]);
       console.log("Group ID:", groupId);

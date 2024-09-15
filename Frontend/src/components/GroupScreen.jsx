@@ -73,7 +73,9 @@ const GroupScreen = () => {
         <ul>
           {group.members && group.members.length > 0 ? (
             group.members.map((member, index) => (
-              <li className="libar" key={index}>{member}</li>
+              <li className="libar" key={index}>
+                {member}
+              </li>
             ))
           ) : (
             <li>No members in this group</li>
@@ -86,28 +88,29 @@ const GroupScreen = () => {
         <button className="find-charity-button" onClick={handleFindCharity}>Find a Common Charity</button>
       ) : null} {/* Button disappears after fetching */}
 
-    <div className="charity-list">
-      <ul>
-        {charities.length > 0 ? (
-          charities.map((charity, index) => (
-            <li key={index}>
-              <div className="charity-info">
-                <div className="name-location">
-                  <h3>{charity.name}</h3>
-                  <p><strong>Location:</strong> {charity.city}, {charity.state}</p>
+      <div className="charity-list">
+        <ul>
+          {charities.length > 0 ? (
+            charities.map((charity, index) => (
+              <li key={index}>
+                <div className="charity-info">
+                  <button className="up-arrow">↑</button> {/* Up arrow button */}
+                  <div className="name-location">
+                    <h3>{charity.name}</h3>
+                    <p><strong>Location:</strong> {charity.city}, {charity.state}</p>
+                  </div>
+                  <div className="website-mission">
+                    <p><strong>Website:</strong> <a href={charity.website} target="_blank" rel="noopener noreferrer">{charity.website}</a></p>
+                    <p><strong>Mission:</strong> {charity.mission}</p>
+                  </div>
                 </div>
-                <div className="website-mission">
-                  <p><strong>Website:</strong> <a href={charity.website} target="_blank" rel="noopener noreferrer">{charity.website}</a></p>
-                  <p><strong>Mission:</strong> {charity.mission}</p>
-                </div>
-              </div>
-            </li>
-          ))
-        ) : (
-          <li></li>
-        )}
-      </ul>
-    </div>
+              </li>
+            ))
+          ) : (
+            <li></li>
+          )}
+        </ul>
+      </div>
 
     </div>
   );  
