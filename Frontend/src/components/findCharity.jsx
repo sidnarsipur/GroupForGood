@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const findCharity = async (groupNames) => {
     try {
         console.log("Group names are for findchairty:", groupNames);
-        const response = await fetch('http://127.0.0.1:4000/api/getMostFrequentTransaction', {
+        const response = await fetch('http://127.0.0.1:4000/api/getMatchingNonprofits', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

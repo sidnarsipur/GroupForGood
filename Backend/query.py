@@ -21,8 +21,8 @@ db = firestore.client()
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api/getMostFrequentTransaction', methods=['POST'])
-def mostFrequestTransaction():
+@app.route('/api/getMatchingNonprofits', methods=['POST'])
+def getMatchingNonprofits():
     nonprofit_ref = db.collection("nonprofits")
     np_docs = nonprofit_ref.stream()
 
@@ -37,7 +37,7 @@ def mostFrequestTransaction():
 
     for user in groupTransactions:
         embeddings = getEmbeddings(groupTransactions[user])
-        centroids.append(findMostFrequent(embeddings)) #Most frequent for each person
+        centroids.append(getMostFrequentTransaction(embeddings)) #Most frequent for each person
     
     average = np.mean(centroids, axis=0) #Average for the group
     dot_products = []
@@ -64,6 +64,7 @@ def mostFrequestTransaction():
 
     return jsonify(results)
 
+#Get all transactions for a list of users
 def getTransactions(user_names, user_docs):
     #create a hashmap of username with a empty list as value
     transactions = {}
@@ -77,17 +78,14 @@ def getTransactions(user_names, user_docs):
 
     return transactions
 
-def findMostFrequent(embeddings):
-    # Perform K-means clustering
-    num_clusters = 2 # Set this based on your needs
-    kmeans = KMeans(n_clusters=num_clusters)
+#Find most frequent transactions with K-means clustering
+def getMostFrequentTransaction(embeddings):
+    kmeans = KMeans(n_clusters=3)
     clusters = kmeans.fit_predict(embeddings)
 
-    # Count instances per cluster
     unique, counts = np.unique(clusters, return_counts=True)
     cluster_counts = dict(zip(unique, counts))
 
-    # Find the most frequent cluster
     most_frequent_cluster = max(cluster_counts, key=cluster_counts.get)
     centroid_vector = kmeans.cluster_centers_[most_frequent_cluster]
 

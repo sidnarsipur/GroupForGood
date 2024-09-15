@@ -104,7 +104,7 @@ const GroupScreen = () => {
             </li>
           ))
         ) : (
-          <li>No charities found</li>
+          <li></li>
         )}
       </ul>
     </div>
