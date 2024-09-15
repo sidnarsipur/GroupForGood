@@ -90,8 +90,8 @@ const Dashboard = () => {
         </header>
         <main className="dashboard-main">
         <div className="group-actions">
-            <button className="action-button create-group-button" onClick={() => toggleModal('create')}>Create Group</button>
-            <button className="action-button join-group-button" onClick={() => toggleModal('join')}>Join Group</button>
+            <button className="action-button create-group-button" onClick={() => toggleModal('create')}>➕ &nbsp; Create Group</button>
+            <button className="action-button join-group-button" onClick={() => toggleModal('join')}>👥 &nbsp; Join Group</button>
           </div>
           {groups.length === 0 ? (
             <div className="dashboard-card no-groups">
@@ -100,13 +100,13 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="groups-list">
-              {groups.map(group => (
-                <Link key={group.id} to={`/group/${group.id}`} className="groupInfo">
-                  <h2>{group.name}</h2>
-                  <p>{group.description}</p>
-                </Link>
-              ))}
-            </div>
+            {groups.map(group => (
+              <Link key={group.id} to={`/group/${group.id}`} className="groupInfo">
+                <h2>{group.name}</h2>
+                <p>{group.description}</p>
+              </Link>
+            ))}
+          </div>
           )}
         </main>
 

@@ -14,7 +14,7 @@ from firebase_admin import firestore
 model_id = "jwdpp7nw"
 baseten_api_key = "iOBMKQkE.h8Iz1zsMVdgJXIpfy8C7Xxd4ta9tBSXQ"
 
-cred = credentials.Certificate('/Users/sid-home/GroupCharity/Data/service_key.json')
+cred = credentials.Certificate('/Users/kevinchafloque/Desktop/GroupCharity/Data/service_key.json')
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
