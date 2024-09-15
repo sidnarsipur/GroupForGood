@@ -14,11 +14,7 @@ Using Capital One's Nessie API endpoints, we generated mock financial data to te
 Massachusetts-based charities, which included their names, mission statements, and locations. 
 
 We then employed InterSystem's IRIS Vector Search to create embeddings from each charity’s mission statement and stored these embeddings in our Firestore database. 
-Users sign in to our website through Clerk’s authentication system. 
 
-Once logged in, user have the option to either join an existing group or create a new one.  To join a group, users simply enter a unique code provided by the group. If they wish to create a new group, they receive a unique code to share with others, enabling them to 
-form and manage their own groups. 
-
-When a group is ready to look for a charity to donate to, our Flask-based Python backend identifies the most relevant transactions for each group member. It then sends only the text embeddings of these transaction descriptions to the database, ensuring privacy. Using K-Means clustering on the generated vectors, we identify the most common transaction vector within the group. 
+Once logged in, user have the option to either join an existing group or create a new one. When a group is ready to look for a charity to donate to, our Flask-based Python backend identifies the most relevant transactions for each group member. It then sends only the text embeddings of these transaction descriptions to the database, ensuring privacy. Using K-Means clustering on the generated vectors, we identify the most common transaction vector within the group. 
 
 We then query our IRIS Vector database to find the most relevant nonprofits then returning these nonprofits to the group.
