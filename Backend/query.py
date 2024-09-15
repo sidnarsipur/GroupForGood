@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+
 import requests
 
 from sklearn.cluster import KMeans
@@ -16,18 +18,20 @@ cred = credentials.Certificate('/Users/sid-home/GroupCharity/Data/service_key.js
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-nonprofit_ref = db.collection("nonprofits")
-np_docs = nonprofit_ref.stream()
-
-users_ref = db.collection("users")
-users_docs = users_ref.stream()
-
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/getMostFrequentTransaction', methods=['POST'])
 def mostFrequestTransaction():
+    nonprofit_ref = db.collection("nonprofits")
+    np_docs = nonprofit_ref.stream()
+
+    users_ref = db.collection("users")
+    users_docs = users_ref.stream()
+
     groupMembers = request.get_json()
-    groupTransactions = getTransactions(groupMembers)
+
+    groupTransactions = getTransactions(groupMembers, users_docs)
 
     centroids = []
 
@@ -50,6 +54,7 @@ def mostFrequestTransaction():
         }
         
         mission_vector = doc.get('mission_vector')
+
         dot_product = np.dot(average, mission_vector)
         dot_products.append((nonprofit, dot_product))
     
@@ -59,14 +64,14 @@ def mostFrequestTransaction():
 
     return jsonify(results)
 
-def getTransactions(user_names):
+def getTransactions(user_names, user_docs):
     #create a hashmap of username with a empty list as value
     transactions = {}
 
     for user in user_names:
         transactions[user] = []
     
-    for doc in users_docs:
+    for doc in user_docs:
         if doc.get('user') in user_names:
             transactions[doc.get('user')].append(doc.get('desc'))
 

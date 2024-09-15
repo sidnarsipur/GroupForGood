@@ -45,6 +45,7 @@ const Dashboard = () => {
       alert(`Group created successfully! Join code: ${joinCode}`);
       setGroups([...groups, { id, name: newGroupName, description: newGroupDescription }]);
       setActiveModal(null);
+      console.log("Group ID:", id);
       setNewGroupName('');
       setNewGroupDescription('');
     } catch (error) {
@@ -62,6 +63,7 @@ const Dashboard = () => {
       const groupDoc = await getDocs(doc(db, 'groups', groupId));
       const groupData = { id: groupId, ...groupDoc.data() };
       setGroups([...groups, groupData]);
+      console.log("Group ID:", groupId);
       setActiveModal(null);
       setJoinCode('');
     } catch (error) {
@@ -69,6 +71,7 @@ const Dashboard = () => {
       alert(error.message);
     }
   };
+
 
   const toggleModal = (modalType) => {
     setActiveModal(activeModal === modalType ? null : modalType);
@@ -154,11 +157,12 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-      </SignedIn>
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
-    </div>
+
+        </SignedIn>
+        <SignedOut>
+          <RedirectToSignIn />
+        </SignedOut>
+      </div>
   );
 };
 
