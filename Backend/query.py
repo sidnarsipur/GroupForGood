@@ -4,10 +4,8 @@ import requests
 from sklearn.cluster import KMeans
 import numpy as np
 
-from sqlalchemy import create_engine, text
-from testcontainers.iris import IRISContainer
-
 import firebase_admin
+
 from firebase_admin import credentials
 from firebase_admin import firestore
 
@@ -21,18 +19,20 @@ db = firestore.client()
 nonprofit_ref = db.collection("nonprofits")
 np_docs = nonprofit_ref.stream()
 
+users_ref = db.collection("users")
+users_docs = users_ref.stream()
+
 app = Flask(__name__)
 
 @app.route('/api/getMostFrequentTransaction', methods=['POST'])
 def mostFrequestTransaction():
-    data = request.get_json()
-
-    groupTransactions = data['group']
+    groupMembers = request.get_json()
+    groupTransactions = getTransactions(groupMembers)
 
     centroids = []
 
     for user in groupTransactions:
-        embeddings = getEmbeddings(user['transactions'])
+        embeddings = getEmbeddings(groupTransactions[user])
         centroids.append(findMostFrequent(embeddings)) #Most frequent for each person
     
     average = np.mean(centroids, axis=0) #Average for the group
@@ -59,10 +59,22 @@ def mostFrequestTransaction():
 
     return jsonify(results)
 
+def getTransactions(user_names):
+    #create a hashmap of username with a empty list as value
+    transactions = {}
+
+    for user in user_names:
+        transactions[user] = []
+    
+    for doc in users_docs:
+        if doc.get('user') in user_names:
+            transactions[doc.get('user')].append(doc.get('desc'))
+
+    return transactions
 
 def findMostFrequent(embeddings):
     # Perform K-means clustering
-    num_clusters = 3  # Set this based on your needs
+    num_clusters = 2 # Set this based on your needs
     kmeans = KMeans(n_clusters=num_clusters)
     clusters = kmeans.fit_predict(embeddings)
 
@@ -105,4 +117,4 @@ def getEmbeddings(descriptions):
     return np.array(embeddings)
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='127.0.0.1', port=4000, debug=True)
