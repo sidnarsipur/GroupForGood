@@ -83,11 +83,16 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <SignedIn>
+        <div className = "dashboard-withoutSignIn">
         <header className="dashboard-header">
           <h1>Charity Sync</h1>
-          <UserButton />
+          {/* <div class="userButton"><UserButton/></div> */}
         </header>
         <main className="dashboard-main">
+        <div className="group-actions">
+            <button className="action-button create-group-button" onClick={() => toggleModal('create')}>Create Group</button>
+            <button className="action-button join-group-button" onClick={() => toggleModal('join')}>Join Group</button>
+          </div>
           {groups.length === 0 ? (
             <div className="dashboard-card no-groups">
               <p>You aren't in any groups. </p>
@@ -96,17 +101,13 @@ const Dashboard = () => {
           ) : (
             <div className="groups-list">
               {groups.map(group => (
-                <Link key={group.id} to={`/group/${group.id}`} className="dashboard-card">
-                  <h2>{group.name}</h2>
+                <Link key={group.id} to={`/group/${group.id}`} className="groupInfo">
+                  <h2>You are currently in: {group.name}</h2>
                   <p>{group.description}</p>
                 </Link>
               ))}
             </div>
           )}
-          <div className="group-actions">
-            <button className="action-button create-group-button" onClick={() => toggleModal('create')}>Create Group</button>
-            <button className="action-button join-group-button" onClick={() => toggleModal('join')}>Join Group</button>
-          </div>
         </main>
 
         {activeModal === 'create' && (
@@ -157,7 +158,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-
+        </div>
         </SignedIn>
         <SignedOut>
           <RedirectToSignIn />

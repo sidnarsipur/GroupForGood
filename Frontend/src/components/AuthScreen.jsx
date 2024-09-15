@@ -14,7 +14,7 @@ const AuthScreen = () => {
   }, [isSignedIn, navigate]);
 
   return (
-    <header>
+    <header className="authHeader">
       <div className="logo">LOGO</div>
       <SignedOut>
         <SignInButton className="sign-in-button">Sign Up or Sign In</SignInButton>

@@ -1,132 +1,41 @@
-/* Dashboard.css
-:root {
-    --primary-color: #6C63FF;
-    --secondary-color: #3F3D56;
-    --background-color: #F4F7FE;
-    --card-background: #FFFFFF;
-    --text-color: #333333;
-    --accent-color: #FF6584;
-  }
-  
-  body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
-  }
-  
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background-color: var(--card-background);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dashboard-header h1 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin: 0;
-  }
-  
-  .dashboard-main {
-    flex: 1;
-    padding: 40px 5%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  
-  .dashboard-card {
-    background-color: var(--card-background);
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    padding: 30px;
-    transition: all 0.3s ease;
-  }
-  
-  .dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dashboard-card h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 16px;
-    color: var(--secondary-color);
-  }
-  
-  .dashboard-card p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--text-color);
-  }
-  
-  .dashboard-card:first-child {
-    background-color: var(--primary-color);
-    color: var(--card-background);
-  }
-  
-  .dashboard-card:first-child h2,
-  .dashboard-card:first-child p {
-    color: var(--card-background);
-  }
-  
-  @media (max-width: 768px) {
-    .dashboard-header {
-      padding: 15px 5%;
-    }
-  
-    .dashboard-main {
-      padding: 20px 5%;
-      grid-template-columns: 1fr;
-    }
-  
-    .dashboard-card {
-      padding: 20px;
-    }
-  } */
-
 .dashboard-container {
+  flex-direction: column;
+  /* min-height: 100vh; */
+}
+
+.dashboard-withoutSignIn {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  align-items: center;
 }
 
 .dashboard-header {
-  display: flex;
-  justify-content: space-between;
+  font-family: 'Avenir';
+  font-weight: 1000;
+  color:#1976D2;
+  font-size: 1.25rem;
   align-items: center;
   padding: 1rem;
-  background-color: #48B1BF;
 }
 
 .dashboard-main {
   flex: 1;
-  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem;
 }
 
 .groups-list {
   width: 100%;
   max-height: 50vh;
   overflow-y: auto;
+  margin-top: 10%;
   margin-bottom: 1rem;
+  align-items: center;
+}
+
+.groupInfo h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .dashboard-card {
@@ -138,36 +47,45 @@
 }
 
 .group-actions {
+  flex-direction: row;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 300px;
+  align-self: center;
+  margin-left: 15%;
+  max-width: 400px;
 }
 
 .action-button {
-  width: 100%;
   padding: 1rem;
   margin: 0.5rem 0;
-  font-size: 1rem;
+  font-family: 'Avenir';
+  font-weight: 1000;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
+.action-button:hover {
+  transform: scale(1.05);
+}
+
 .create-group-button {
-  background-color: #4CAF50;
+  background-color: #268629;
+  margin-right: 20px; /* Adjust spacing between items */
   color: white;
 }
+
+.create-group-button:hover {
+    background-color: #06540a;
+  }
 
 .join-group-button {
-  background-color: #2196F3;
+  background-color: #b821f3;
   color: white;
 }
 
-.action-button:hover {
-  opacity: 0.9;
+.join-group-button:hover {
+  background-color: #3a064e;
 }
 
 .modal {
@@ -183,18 +101,25 @@
 }
 
 .modal-content {
-  background-color: #2196F3;
-  padding: 2rem;
+  background-color: #cb7070; /* Updated to white for better readability */
   border-radius: 8px;
+  font-family: 'Avenir';
   width: 90%;
   max-width: 500px;
+  padding-left: 1rem; /* Added padding for better spacing */
+  padding-right: 1rem; /* Added padding for better spacing */
+  padding-bottom: 1rem; /* Added padding for better spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centered content */
 }
 
 .modal-content h2 {
-  margin-top: 0;
+  font-size: 1.5rem; /* Increased font size for better readability */
 }
 
 .modal-content form {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -202,42 +127,51 @@
 .modal-content input,
 .modal-content textarea {
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 0.75rem; /* Increased padding for better input area */
   font-size: 1rem;
+  border: 1px solid #ccc; /* Added border for better focus indication */
+  border-radius: 4px;
 }
 
 .modal-actions {
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .modal-actions button {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem; /* Adjusted padding for consistency */
   font-size: 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s; /* Added transform transition for button effect */
 }
 
-.loading,
-.error {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 1.2rem;
+.modal-actions button:hover {
+  transform: scale(1.05); /* Added hover effect for buttons */
+}
+
+.modal-actions .cancel-button {
+  background-color: #ccc; /* Color for cancel button */
+  color: #333; /* Text color for cancel button */
+}
+
+.modal-actions .cancel-button:hover {
+  background-color: #bbb;
+}
+
+.modal-actions .confirm-button {
+  background-color: #2196F3; /* Color for confirm button */
+  color: white;
+}
+
+.modal-actions .confirm-button:hover {
+  background-color: #1976D2;
 }
 
 @media (max-width: 600px) {
-  .dashboard-header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .dashboard-header h1 {
-    margin-bottom: 1rem;
-  }
-
   .modal-content {
     padding: 1rem;
   }
@@ -253,7 +187,6 @@
 }
 
 
-
 .floating-create-button {
   position: fixed;
   bottom: 20px;
@@ -264,7 +197,6 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
@@ -288,7 +220,6 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;

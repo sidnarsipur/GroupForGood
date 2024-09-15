@@ -23,10 +23,6 @@
   margin-bottom: 20px;
 }
 
-.group-details {
-  margin-top: 10%; 
-}
-
 .members {
   font-family: 'Avenir';
   margin-top: 10%; 
@@ -36,7 +32,7 @@
 .group-code {
   position: absolute;
   top: 10%;
-  right: -50%;
+  right: 10%;
   font-size: 1rem;
   font-family: 'Avenir';
   font-weight: 1000;
@@ -46,10 +42,15 @@
   border-radius: 5px;
 }
 
+.group-code:hover {
+  background-color: #840831;
+  transform: scale(1.05);
+}
+
 .back-button {
   position: absolute;
   top: 10%;
-  left: -50%;
+  left: 10%;
   padding: 10px 20px;
   font-size: 1rem;
   font-family: 'Avenir';
@@ -63,7 +64,7 @@
 }
 
 .back-button:hover {
-  background-color: #0056b3;
+  background-color: #04284f;
   transform: scale(1.05);
 }
 
@@ -100,7 +101,7 @@ li:not(:last-child)::after {
 }
 
 .find-charity-button {
-  margin-top: 15%;
+  margin-top: 5%;
   padding: 10px 20px;
   font-size: 1rem;
   font-family: 'Avenir';
