@@ -11,10 +11,10 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-model_id = "jwdpp7nw"
-baseten_api_key = "iOBMKQkE.h8Iz1zsMVdgJXIpfy8C7Xxd4ta9tBSXQ"
+model_id = ""
+baseten_api_key = ""
 
-cred = credentials.Certificate('/Users/kevinchafloque/Desktop/GroupCharity/Data/service_key.json')
+cred = credentials.Certificate("")
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
