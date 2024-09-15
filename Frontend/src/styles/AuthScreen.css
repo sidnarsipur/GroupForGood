@@ -1,0 +1,56 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .logo {
+    font-size: 3.5rem; /* Increased font size */
+    font-weight: bold;
+    color: #2d2d2d; /* Slightly darker grey for a modern look */
+    margin-bottom: 20px; /* Reduced margin to fit better in the center */
+  }
+  
+  .sign-in-button {
+    padding: 15px 40px; /* Slightly wider button for better proportions */
+    font-size: 1.3rem; /* Increased font size for the button */
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); /* Added subtle shadow for depth */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform for animation */
+    margin-bottom: 20px; /* Spacing between button and subtitle */
+  }
+  
+  .sign-in-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Button slightly lifts on hover */
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: rgba(102, 102, 102, 0.8); /* Slightly greyed out text with opacity */
+    margin-top: 10px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
