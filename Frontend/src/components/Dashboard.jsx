@@ -120,7 +120,7 @@ const Dashboard = () => {
 			<SignedIn>
 				<div className="dashboard-withoutSignIn">
 					<header className="dashboard-header">
-						<h1>Charity Sync</h1>
+						<h1>Group4Good</h1>
 						{/* <div class="userButton"><UserButton/></div> */}
 					</header>
 					<main className="dashboard-main">

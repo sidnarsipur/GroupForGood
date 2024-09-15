@@ -227,7 +227,12 @@ li:nth-child(even) {
   height: 50px;
   animation: spin 1s linear infinite;
   margin: 20px;
+  margin-left: 40%;
   margin-top: 10%;
+}
+
+.spinner {
+  align-items: center;
 }
 
 @keyframes spin {
