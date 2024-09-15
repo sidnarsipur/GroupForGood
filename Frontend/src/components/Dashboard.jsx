@@ -102,7 +102,7 @@ const Dashboard = () => {
             <div className="groups-list">
               {groups.map(group => (
                 <Link key={group.id} to={`/group/${group.id}`} className="groupInfo">
-                  <h2>You are currently in: {group.name}</h2>
+                  <h2>{group.name}</h2>
                   <p>{group.description}</p>
                 </Link>
               ))}

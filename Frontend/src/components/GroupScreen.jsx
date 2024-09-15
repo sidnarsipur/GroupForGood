@@ -81,7 +81,7 @@ const GroupScreen = () => {
         </ul>
       </div>
       {isFetchingCharity ? (
-        <div className="loading-spinner">Loading...</div> // Add a loading spinner here
+        <div className="loading-spinner"></div> // Add a loading spinner here
       ) : charities.length === 0 ? (
         <button className="find-charity-button" onClick={handleFindCharity}>Find a Common Charity</button>
       ) : null} {/* Button disappears after fetching */}
