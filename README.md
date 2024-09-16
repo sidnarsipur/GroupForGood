@@ -15,6 +15,6 @@ Massachusetts-based charities, which included their names, mission statements, a
 
 We then employed InterSystem's IRIS Vector Search to create embeddings from each charity’s mission statement and stored these embeddings in our Firestore database. 
 
-Once logged in, user have the option to either join an existing group or create a new one. When a group is ready to look for a charity to donate to, our Flask-based Python backend identifies the most relevant transactions for each group member. It then sends only the text embeddings of these transaction descriptions to the database, ensuring privacy. Using K-Means clustering on the generated vectors, we identify the most common transaction vector within the group. 
+Once logged in, user have the option to either join an existing group or create a new one. When a group is ready to look for a charity to donate to, our Flask-based Python backend uses a classifier to identify the most relevant transactions for each group member. Using K-Means clustering on the embeddings of each transaction, we can then identify the most common transaction vector for a group.
 
-We then query our IRIS Vector database to find the most relevant nonprofits then returning these nonprofits to the group.
+We then query our IRIS Vector database to find the most relevant nonprofits against that vector, finding the best match for the entire group.
