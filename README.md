@@ -10,7 +10,7 @@ Group4Good safely accesses your purchase data to identify transactions relevant 
 
 # How we built it
 
-Using Capital One's Nessie API endpoints, we generated mock financial data to test our product on. For our non-profit data, we utilized a publicly available dataset of 
+Using Capital One's Nessie API endpoints, we generated realistic mock financial data to test our product on. For our non-profit data, we utilized a publicly available dataset of 
 Massachusetts-based charities, which included their names, mission statements, and locations. 
 
 We then employed InterSystem's IRIS Vector Search to create embeddings from each charity’s mission statement and stored these embeddings in our Firestore database. 
